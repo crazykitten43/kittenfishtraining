@@ -1,0 +1,7 @@
+build/
+*.kff
+*.nnue
+*.tsv
+*.gz
+__pycache__/
+*.pyc
