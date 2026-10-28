@@ -5,3 +5,9 @@ build/
 *.gz
 __pycache__/
 *.pyc
+.venv/
+*.pt
+*.kfd
+*.sqlite*
+*.zst
+*.tmp

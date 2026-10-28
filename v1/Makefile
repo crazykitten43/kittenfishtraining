@@ -1,7 +1,7 @@
 CXX ?= c++
 CXXFLAGS ?= -O3 -march=native -std=c++17 -Wall -Wextra -Wpedantic
 all: build/kfnnue
-build/kfnnue: src/main.cpp
+build/kfnnue: src/main.cpp src/stream.h
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) $< -o $@
 test: build/kfnnue
@@ -10,3 +10,4 @@ test: build/kfnnue
 clean:
 	rm -rf build
 .PHONY: all test clean
+

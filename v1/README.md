@@ -1,3 +1,9 @@
+# Large datasets and NVIDIA L4
+
+For the bounded-memory 100M-position pipeline, CUDA training, restart/checkpoint
+commands, storage sizing and tests, see [SCALE_100M.md](SCALE_100M.md).
+The original TSV `train` command below loads the whole dataset into RAM.
+
 # KittenFish NNUE training
 
 Original C++17 CPU NNUE baseline: training, quantization, incremental evaluation,
@@ -191,3 +197,4 @@ deduplication and the required explicit perspective argument.
 weights, 200 accumulator updates against complete rebuilds (including
 king bucket changes), one SGD descent step, and model roundtripping. Its board
 mutations intentionally exercise tensor bookkeeping rather than legal play.
+

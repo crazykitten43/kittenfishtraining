@@ -1,0 +1,4 @@
+# Install the CUDA PyTorch wheel separately per SCALE_100M.md.
+numpy>=1.26,<3
+zstandard>=0.22,<1
+torch>=2.6,<3

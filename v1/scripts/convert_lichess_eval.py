@@ -38,7 +38,8 @@ def open_input(path):
         reader = zstandard.ZstdDecompressor().stream_reader(raw)
         return io.TextIOWrapper(reader, encoding="utf-8", errors="replace")
     if str(path).endswith(".gz"):
-        return gzip.open(raw, "rt", encoding="utf-8", errors="replace")
+        raw.close()
+        return gzip.open(path, "rt", encoding="utf-8", errors="replace")
     import io
     return io.TextIOWrapper(raw, encoding="utf-8", errors="replace")
 
@@ -63,8 +64,9 @@ def best_cp(evals, min_depth):
         return None
     chosen = max(candidates, key=lambda e: e["depth"])
     # Lichess recommends the deepest evaluation's first PV.
-    score = chosen["pvs"][0].get("cp")
-    return score if isinstance(score, (int, float)) and math.isfinite(score) else None
+    pv = chosen["pvs"][0]
+    score = pv.get("cp") if isinstance(pv, dict) else None
+    return score if isinstance(score, (int, float)) and not isinstance(score, bool) and math.isfinite(score) else None
 
 
 def convert(source, outdir, target, min_depth, perspective, max_lines=0):
@@ -150,4 +152,5 @@ if __name__ == "__main__":
     except (OSError, ValueError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         raise SystemExit(1)
+
 

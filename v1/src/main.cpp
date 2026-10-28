@@ -137,11 +137,14 @@ void diagnose(const FloatNet& n,const vector<Sample>& data) {
     cout<<"activation sample (up to 256 positions): clipped_low="<<100.*low/total
         <<"% clipped_high="<<100.*high/total<<"%\n";
 }
+#include "stream.h"
 const string START="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 int main(int argc,char**argv)try {
     if(argc<2)throw runtime_error("commands: train TRAIN.tsv VAL.tsv PREFIX EPOCHS LR [RESUME.kff] | export MODEL.kff MODEL.nnue | eval MODEL.nnue FEN | bench MODEL.nnue [ITERATIONS] | diagnose MODEL.kff DATA.tsv | selftest");
     string cmd=argv[1];
-    if(cmd=="train"&&argc>=7) {
+    if(cmd=="stream-train"&&(argc==7||argc==8)) {
+        stream_train(argv[2],argv[3],argv[4],stoi(argv[5]),stof(argv[6]),argc==8?argv[7]:"");
+    } else if(cmd=="train"&&argc>=7) {
         auto tr=dataset(argv[2]),va=dataset(argv[3]);FloatNet n;if(argc>=8)n.load(argv[7]);int epochs=stoi(argv[5]);float lr=stof(argv[6]);if(epochs<1||!isfinite(lr)||lr<=0||lr>1)throw runtime_error("invalid epochs/lr");mt19937 rng(42);double best=1e100;
         print_metrics("zero baseline",metrics(va,[](const Position&){return 0.;}));
         print_metrics("material baseline",metrics(va,[](const Position& p){return material(p);}));
@@ -192,3 +195,4 @@ int main(int argc,char**argv)try {
     } else throw runtime_error("invalid command/arguments (train requires explicit LR)");
     return 0;
 }catch(const exception&e){cerr<<"error: "<<e.what()<<'\n';return 1;}
+
