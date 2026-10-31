@@ -1,0 +1,20 @@
+{
+  "model": "resnet",
+  "manifest": "/home/kittenfishchess/kittenfish-experiments-20261031/benchmark-20261031/manifest.json",
+  "output": "/home/kittenfishchess/kittenfish-experiments-20261031/benchmark-20261031/smoke-resnet",
+  "epochs": 1,
+  "batch_size": 256,
+  "workers": 2,
+  "lr": 0.0003,
+  "weight_decay": 0.0001,
+  "cp_scale": 400,
+  "clip_cp": 2000,
+  "seed": 42,
+  "device": "cuda",
+  "amp": "bf16",
+  "resume": null,
+  "max_train_batches": 3,
+  "max_val_batches": 2,
+  "device_resolved": "cuda",
+  "parameter_count": 3078697
+}

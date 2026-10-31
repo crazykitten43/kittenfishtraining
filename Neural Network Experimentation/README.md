@@ -99,3 +99,18 @@ model.eval()
 with torch.inference_mode():
     white_cp = model(pieces, stm) * checkpoint['config']['cp_scale']
 ```
+
+## Completed L4 comparison
+
+See [the 31 October 2026 benchmark](benchmarks/2026-10-31-1m/README.md) for one-epoch SE-ResNet, transformer, and NNUE results on the same 1,000,000 training and 100,000 validation positions. Logs, configurations, exact metrics, checksums, smoke-run checkpoints, full-run checkpoints, and the selected data records are included. Binary weights and data use Git LFS; install Git LFS and run `git lfs pull` after cloning.
+
+The instrumented `train.py` measures training time, throughput, and peak CUDA allocation. `train_nnue.py` is the existing v1 NNUE trainer with BF16 autocast and equivalent measurements; its native optimizer and batch size differ from the spatial models. The benchmark's historical scripts and configuration retain the original VM paths as provenance. The following commands use portable dataset paths and fresh output directories:
+
+```bash
+cd 'Neural Network Experimentation'
+python -m unittest -v test_experiments.py
+python train.py --model resnet --manifest benchmarks/2026-10-31-1m/manifest.json --output runs/replay-resnet --epochs 1 --batch-size 256 --workers 4 --device cuda --amp bf16
+python train.py --model transformer --manifest benchmarks/2026-10-31-1m/manifest.json --output runs/replay-transformer --epochs 1 --batch-size 256 --workers 4 --device cuda --amp bf16
+mkdir -p runs/replay-nnue
+python train_nnue.py benchmarks/2026-10-31-1m/nnue-subset/manifest.json runs/replay-nnue/model --epochs 1 --batch-size 4096 --workers 4 --cpu-threads 4 --device cuda --checkpoint-every 10000
+```

@@ -1,0 +1,103 @@
+Sat Oct 31 11:32:26 UTC 2026
+test_conversion_split_counts_and_tail (test_experiments.EncodingTests.test_conversion_split_counts_and_tail) ... {"train": 5, "val": 3}
+ok
+test_invalid_inputs (test_experiments.EncodingTests.test_invalid_inputs) ... ok
+test_orientation_and_score (test_experiments.EncodingTests.test_orientation_and_score) ... ok
+test_both_models_forward_backward (test_experiments.ModelTests.test_both_models_forward_backward) ... ok
+test_loader_covers_every_record (test_experiments.ModelTests.test_loader_covers_every_record) ... {"train": 11, "val": 11}
+ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 3.499s
+
+OK
+resnet: 3,078,697 parameters; device=cuda
+{"epoch": 1, "train_mse": 0.9867178797721863, "train_mae_cp": 231.0332794189453, "val_mse": 0.9706348180770874, "val_mae_cp": 227.39804077148438, "train_positions": 768, "val_positions": 512, "seconds": 3.3350190499999997, "train_seconds": 3.263802601000009, "train_positions_per_second": 235.30834853942747, "parameter_count": 3078697, "train_peak_allocated_bytes": 289778688, "peak_allocated_bytes": 289778688, "peak_reserved_bytes": 325058560}
+transformer: 6,371,585 parameters; device=cuda
+{"epoch": 1, "train_mse": 1.6306593020757039, "train_mae_cp": 361.3572591145833, "val_mse": 1.0545472502708435, "val_mae_cp": 282.4091796875, "train_positions": 768, "val_positions": 512, "seconds": 2.325020508999984, "train_seconds": 2.2485043140000016, "train_positions_per_second": 341.56038537180206, "parameter_count": 6371585, "train_peak_allocated_bytes": 1611904512, "peak_allocated_bytes": 1611904512, "peak_reserved_bytes": 1755316224}
+resnet: 3,078,697 parameters; device=cuda
+epoch 1 batch 100: MAE=217.6 cp
+epoch 1 batch 200: MAE=216.7 cp
+epoch 1 batch 300: MAE=216.4 cp
+epoch 1 batch 400: MAE=215.2 cp
+epoch 1 batch 500: MAE=213.6 cp
+epoch 1 batch 600: MAE=211.8 cp
+epoch 1 batch 700: MAE=210.8 cp
+epoch 1 batch 800: MAE=209.3 cp
+epoch 1 batch 900: MAE=208.4 cp
+epoch 1 batch 1000: MAE=207.7 cp
+epoch 1 batch 1100: MAE=206.8 cp
+epoch 1 batch 1200: MAE=206.1 cp
+epoch 1 batch 1300: MAE=204.8 cp
+epoch 1 batch 1400: MAE=203.5 cp
+epoch 1 batch 1500: MAE=202.3 cp
+epoch 1 batch 1600: MAE=201.5 cp
+epoch 1 batch 1700: MAE=200.5 cp
+epoch 1 batch 1800: MAE=199.6 cp
+epoch 1 batch 1900: MAE=198.7 cp
+epoch 1 batch 2000: MAE=197.9 cp
+epoch 1 batch 2100: MAE=196.9 cp
+epoch 1 batch 2200: MAE=196.2 cp
+epoch 1 batch 2300: MAE=195.4 cp
+epoch 1 batch 2400: MAE=194.8 cp
+epoch 1 batch 2500: MAE=194.1 cp
+epoch 1 batch 2600: MAE=193.4 cp
+epoch 1 batch 2700: MAE=192.7 cp
+epoch 1 batch 2800: MAE=191.9 cp
+epoch 1 batch 2900: MAE=191.3 cp
+epoch 1 batch 3000: MAE=190.5 cp
+epoch 1 batch 3100: MAE=189.7 cp
+epoch 1 batch 3200: MAE=189.4 cp
+epoch 1 batch 3300: MAE=189.1 cp
+epoch 1 batch 3400: MAE=188.7 cp
+epoch 1 batch 3500: MAE=188.6 cp
+epoch 1 batch 3600: MAE=188.4 cp
+epoch 1 batch 3700: MAE=188.1 cp
+epoch 1 batch 3800: MAE=187.8 cp
+epoch 1 batch 3900: MAE=187.4 cp
+{"epoch": 1, "train_mse": 0.623470742682457, "train_mae_cp": 187.37262854296876, "val_mse": 0.8947963160896302, "val_mae_cp": 259.39040234375, "train_positions": 1000000, "val_positions": 100000, "seconds": 107.89596795899999, "train_seconds": 104.31457428500002, "train_positions_per_second": 9586.388161522656, "parameter_count": 3078697, "train_peak_allocated_bytes": 289778688, "peak_allocated_bytes": 289778688, "peak_reserved_bytes": 325058560}
+transformer: 6,371,585 parameters; device=cuda
+epoch 1 batch 100: MAE=220.3 cp
+epoch 1 batch 200: MAE=218.3 cp
+epoch 1 batch 300: MAE=219.7 cp
+epoch 1 batch 400: MAE=219.5 cp
+epoch 1 batch 500: MAE=220.2 cp
+epoch 1 batch 600: MAE=218.7 cp
+epoch 1 batch 700: MAE=218.4 cp
+epoch 1 batch 800: MAE=217.3 cp
+epoch 1 batch 900: MAE=216.8 cp
+epoch 1 batch 1000: MAE=216.2 cp
+epoch 1 batch 1100: MAE=215.4 cp
+epoch 1 batch 1200: MAE=215.1 cp
+epoch 1 batch 1300: MAE=214.1 cp
+epoch 1 batch 1400: MAE=213.0 cp
+epoch 1 batch 1500: MAE=212.0 cp
+epoch 1 batch 1600: MAE=211.2 cp
+epoch 1 batch 1700: MAE=209.9 cp
+epoch 1 batch 1800: MAE=208.8 cp
+epoch 1 batch 1900: MAE=208.0 cp
+epoch 1 batch 2000: MAE=207.2 cp
+epoch 1 batch 2100: MAE=206.5 cp
+epoch 1 batch 2200: MAE=205.8 cp
+epoch 1 batch 2300: MAE=205.1 cp
+epoch 1 batch 2400: MAE=204.5 cp
+epoch 1 batch 2500: MAE=203.9 cp
+epoch 1 batch 2600: MAE=203.2 cp
+epoch 1 batch 2700: MAE=202.5 cp
+epoch 1 batch 2800: MAE=201.7 cp
+epoch 1 batch 2900: MAE=201.3 cp
+epoch 1 batch 3000: MAE=200.7 cp
+epoch 1 batch 3100: MAE=200.0 cp
+epoch 1 batch 3200: MAE=199.6 cp
+epoch 1 batch 3300: MAE=199.2 cp
+epoch 1 batch 3400: MAE=199.1 cp
+epoch 1 batch 3500: MAE=199.0 cp
+epoch 1 batch 3600: MAE=198.9 cp
+epoch 1 batch 3700: MAE=198.6 cp
+epoch 1 batch 3800: MAE=198.5 cp
+epoch 1 batch 3900: MAE=198.3 cp
+{"epoch": 1, "train_mse": 0.6832511911840439, "train_mae_cp": 198.24095188867187, "val_mse": 0.6647137431144714, "val_mae_cp": 197.074634453125, "train_positions": 1000000, "val_positions": 100000, "seconds": 258.17295834799995, "train_seconds": 251.43303994199994, "train_positions_per_second": 3977.2020424629873, "parameter_count": 6371585, "train_peak_allocated_bytes": 1611904512, "peak_allocated_bytes": 1611904512, "peak_reserved_bytes": 1755316224}
+COMPLETE
+FINAL_EXIT_CODE=0
+Sat Oct 31 11:38:58 UTC 2026
+Shutdown scheduled for Sat 2026-10-31 11:48:58 UTC, use 'shutdown -c' to cancel.

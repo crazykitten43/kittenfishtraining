@@ -1,0 +1,108 @@
+{
+  "resnet": {
+    "metrics": {
+      "epoch": "1",
+      "train_mse": "0.623470742682457",
+      "train_mae_cp": "187.37262854296876",
+      "val_mse": "0.8947963160896302",
+      "val_mae_cp": "259.39040234375",
+      "train_positions": "1000000",
+      "val_positions": "100000",
+      "seconds": "107.89596795899999",
+      "train_seconds": "104.31457428500002",
+      "train_positions_per_second": "9586.388161522656",
+      "parameter_count": "3078697",
+      "train_peak_allocated_bytes": "289778688",
+      "peak_allocated_bytes": "289778688",
+      "peak_reserved_bytes": "325058560"
+    },
+    "checkpoints": {
+      "best": {
+        "path": "/home/kittenfishchess/kittenfish-experiments-20261031/benchmark-20261031/resnet/best.pt",
+        "bytes": 37106980,
+        "sha256": "a500c10a6c99512a13fbcf0f15900887f4f3e2f00db2a85d9d5fc7fabb958ab4",
+        "strict_reload_and_finite_inference": true
+      },
+      "last": {
+        "path": "/home/kittenfishchess/kittenfish-experiments-20261031/benchmark-20261031/resnet/last.pt",
+        "bytes": 37106980,
+        "sha256": "08de1d0ffbe8336efceae89793f108a8af6d20157b0649ec794b4419f8ca3330",
+        "strict_reload_and_finite_inference": true
+      }
+    },
+    "sampled_device_peak_mib": 566.0
+  },
+  "transformer": {
+    "metrics": {
+      "epoch": "1",
+      "train_mse": "0.6832511911840439",
+      "train_mae_cp": "198.24095188867187",
+      "val_mse": "0.6647137431144714",
+      "val_mae_cp": "197.074634453125",
+      "train_positions": "1000000",
+      "val_positions": "100000",
+      "seconds": "258.17295834799995",
+      "train_seconds": "251.43303994199994",
+      "train_positions_per_second": "3977.2020424629873",
+      "parameter_count": "6371585",
+      "train_peak_allocated_bytes": "1611904512",
+      "peak_allocated_bytes": "1611904512",
+      "peak_reserved_bytes": "1755316224"
+    },
+    "checkpoints": {
+      "best": {
+        "path": "/home/kittenfishchess/kittenfish-experiments-20261031/benchmark-20261031/transformer/best.pt",
+        "bytes": 76577583,
+        "sha256": "7cc039b1dbfb85c4d8600d6429098dfa6197c5698ab9cd86b30b6d0fa8b56de7",
+        "strict_reload_and_finite_inference": true
+      },
+      "last": {
+        "path": "/home/kittenfishchess/kittenfish-experiments-20261031/benchmark-20261031/transformer/last.pt",
+        "bytes": 76577583,
+        "sha256": "3b50ad3e0ebc1014eb4a2d5748f292dcc8a17e7f19be9638c44cb20dcf3fe675",
+        "strict_reload_and_finite_inference": true
+      }
+    },
+    "sampled_device_peak_mib": 1922.0
+  }
+}
+{
+  "metrics": {
+    "epoch": 1,
+    "train_positions": 1000000,
+    "val_positions": 100000,
+    "train_seconds": 7.326151950000053,
+    "train_positions_per_second": 136497.30538280643,
+    "seconds": 9.651524108999979,
+    "val_mae_cp": 214.1027825,
+    "val_mse_cp2": 136656.05728,
+    "parameter_count": 10620289,
+    "effective_parameter_count": 10619425,
+    "peak_allocated_bytes": 390399488,
+    "peak_reserved_bytes": 524288000,
+    "amp": "bf16",
+    "batch_size": 4096,
+    "lr": 0.0001,
+    "seed": 42,
+    "dataset": "e5d1747d7d8db43580b9fd8eb07306c50d2d3076e98bd25e3e9fee98e534c1e9"
+  },
+  "checkpoints": {
+    "model.best.kff": {
+      "path": "/home/kittenfishchess/kittenfish-experiments-20261031/benchmark-20261031/nnue/model.best.kff",
+      "bytes": 42477704,
+      "sha256": "8a0069b6b29d7ad2ebffa722c27e5b7fcbfba639a2c81c71b5d7263922491723"
+    },
+    "model.last.kff": {
+      "path": "/home/kittenfishchess/kittenfish-experiments-20261031/benchmark-20261031/nnue/model.last.kff",
+      "bytes": 42477704,
+      "sha256": "8a0069b6b29d7ad2ebffa722c27e5b7fcbfba639a2c81c71b5d7263922491723"
+    },
+    "model.last.pt": {
+      "path": "/home/kittenfishchess/kittenfish-experiments-20261031/benchmark-20261031/nnue/model.last.pt",
+      "bytes": 127449203,
+      "sha256": "721b1b21a5c04e5828a0b62388629bbdd0aa817184f1d0540d79c22bccc91e13"
+    }
+  },
+  "strict_reload_and_finite_inference": true,
+  "sampled_device_peak_mib": 748.0
+}

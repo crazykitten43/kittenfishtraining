@@ -1,0 +1,12 @@
+test_input_perspective_required (test_prepare_dataset.ConversionTests.test_input_perspective_required) ... ok
+test_score_signs_groups_and_deduplication (test_prepare_dataset.ConversionTests.test_score_signs_groups_and_deduplication) ... ok
+test_invalid_board_and_labels (test_shards.ShardTests.test_invalid_board_and_labels) ... ok
+test_resume_dedup_sign_and_determinism (test_shards.ShardTests.test_resume_dedup_sign_and_determinism) ... ok
+test_uncommitted_records_rollback (test_shards.ShardTests.test_uncommitted_records_rollback) ... ok
+test_zstd_input (test_shards.ShardTests.test_zstd_input) ... ok
+test_schedule_corruption_resume_and_export (test_train_l4.L4Tests.test_schedule_corruption_resume_and_export) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 10.161s
+
+OK

@@ -1,0 +1,2 @@
+transformer: 6,371,585 parameters; device=cuda
+{"epoch": 1, "train_mse": 1.6306593020757039, "train_mae_cp": 361.3572591145833, "val_mse": 1.0545472502708435, "val_mae_cp": 282.4091796875, "train_positions": 768, "val_positions": 512, "seconds": 2.325020508999984, "train_seconds": 2.2485043140000016, "train_positions_per_second": 341.56038537180206, "parameter_count": 6371585, "train_peak_allocated_bytes": 1611904512, "peak_allocated_bytes": 1611904512, "peak_reserved_bytes": 1755316224}

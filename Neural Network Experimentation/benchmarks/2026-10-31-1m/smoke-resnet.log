@@ -1,0 +1,2 @@
+resnet: 3,078,697 parameters; device=cuda
+{"epoch": 1, "train_mse": 0.9867178797721863, "train_mae_cp": 231.0332794189453, "val_mse": 0.9706348180770874, "val_mae_cp": 227.39804077148438, "train_positions": 768, "val_positions": 512, "seconds": 3.3350190499999997, "train_seconds": 3.263802601000009, "train_positions_per_second": 235.30834853942747, "parameter_count": 3078697, "train_peak_allocated_bytes": 289778688, "peak_allocated_bytes": 289778688, "peak_reserved_bytes": 325058560}

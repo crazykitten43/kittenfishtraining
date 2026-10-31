@@ -1,3 +1,6 @@
 __pycache__/
 runs/
 *.kfd
+
+# The reproducibility benchmark includes its exact shared data subset.
+!benchmarks/2026-10-31-1m/nnue-subset/*.kfd

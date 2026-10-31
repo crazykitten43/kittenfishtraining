@@ -1,0 +1,115 @@
+{
+  "config": {
+    "format": "KFD1",
+    "min_depth": 20,
+    "mtime_ns": 1793103416482815962,
+    "perspective": "white",
+    "shard_size": 100000,
+    "size": 22423777007,
+    "source": "/home/kittenfishchess/lichess_db_eval.jsonl.zst",
+    "target": 100000000,
+    "val_permille": 10
+  },
+  "counts": {
+    "train": 1000000,
+    "val": 100000
+  },
+  "format": "KFD1",
+  "perspective": "white",
+  "record_bytes": 67,
+  "shards": [
+    {
+      "count": 100000,
+      "path": "train-065400000.kfd",
+      "sha256": "df19d92fa314024b9b4be7fffdfc9b5edefd057ed43d758379c00c57c1424316",
+      "split": "train"
+    },
+    {
+      "count": 100000,
+      "path": "train-011400000.kfd",
+      "sha256": "215c63d0b98527cad526241ea7a23e55b5e64ccaae353145179839c9a5ce235b",
+      "split": "train"
+    },
+    {
+      "count": 100000,
+      "path": "train-002500000.kfd",
+      "sha256": "720cf80e0a92bf03a14db1eb4d2e294ffb741d288bb2a3226349dfbff6940de4",
+      "split": "train"
+    },
+    {
+      "count": 100000,
+      "path": "train-075900000.kfd",
+      "sha256": "b03634806bd11471bf1bef2292b9c8ce83bd3718fa1d7984f06663ac2aa50699",
+      "split": "train"
+    },
+    {
+      "count": 100000,
+      "path": "train-028100000.kfd",
+      "sha256": "a87f9e69e3ce1000c49c1c91308b63a9958c9f20e5cae9b235421eeb810783ae",
+      "split": "train"
+    },
+    {
+      "count": 100000,
+      "path": "train-025000000.kfd",
+      "sha256": "3db9d7727d05cc39b45cc5c4fb5936f7a61701b55c4a43a092e8341fb9ef38bf",
+      "split": "train"
+    },
+    {
+      "count": 100000,
+      "path": "train-022800000.kfd",
+      "sha256": "da2f6ae316a6d111e655793fe5f15b55393ee5092f95f1eaab87266de6280ad5",
+      "split": "train"
+    },
+    {
+      "count": 100000,
+      "path": "train-014200000.kfd",
+      "sha256": "a17e9b68004a5a3455e9e57ccec730c4ee7f1b33733218bc2e2434afdd8a4e06",
+      "split": "train"
+    },
+    {
+      "count": 100000,
+      "path": "train-075400000.kfd",
+      "sha256": "25b6f5fffdf45d94c2e793833221d165c27922a7f445c9c1b244affe1117e20e",
+      "split": "train"
+    },
+    {
+      "count": 100000,
+      "path": "train-010400000.kfd",
+      "sha256": "8c21684d0d7ca27b0106912b3d4b349a9785f1218081ee27b69a3609a4de15f6",
+      "split": "train"
+    },
+    {
+      "count": 100000,
+      "path": "val-000800000.kfd",
+      "sha256": "4baff67a53a056adb0aa584a6f422bd4cbdbd19c71fa32166067d29422cb04e9",
+      "split": "val"
+    }
+  ],
+  "stats": {
+    "bad": 24402,
+    "black": 49103436,
+    "clipped": 1527852,
+    "config": {
+      "format": "KFD1",
+      "min_depth": 20,
+      "mtime_ns": 1793103416482815962,
+      "perspective": "white",
+      "shard_size": 100000,
+      "size": 22423777007,
+      "source": "/home/kittenfishchess/lichess_db_eval.jsonl.zst",
+      "target": 100000000,
+      "val_permille": 10
+    },
+    "duplicates": 274475,
+    "filtered": 39109284,
+    "scanned": 139408161,
+    "selected": 100000000,
+    "white": 50896564
+  },
+  "target_reached": true,
+  "subset_selection": {
+    "seed": 42,
+    "method": "uniform sample of complete 100000-record shards without replacement",
+    "source_manifest": "/home/kittenfishchess/kittenfishtraining-100m/data/kf100m/manifest.json"
+  }
+}

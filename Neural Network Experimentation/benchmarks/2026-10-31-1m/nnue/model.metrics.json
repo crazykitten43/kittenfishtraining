@@ -1,0 +1,19 @@
+{
+  "epoch": 1,
+  "train_positions": 1000000,
+  "val_positions": 100000,
+  "train_seconds": 7.326151950000053,
+  "train_positions_per_second": 136497.30538280643,
+  "seconds": 9.651524108999979,
+  "val_mae_cp": 214.1027825,
+  "val_mse_cp2": 136656.05728,
+  "parameter_count": 10620289,
+  "effective_parameter_count": 10619425,
+  "peak_allocated_bytes": 390399488,
+  "peak_reserved_bytes": 524288000,
+  "amp": "bf16",
+  "batch_size": 4096,
+  "lr": 0.0001,
+  "seed": 42,
+  "dataset": "e5d1747d7d8db43580b9fd8eb07306c50d2d3076e98bd25e3e9fee98e534c1e9"
+}

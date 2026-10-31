@@ -62,6 +62,7 @@ def main():
     config = {k: str(v) if isinstance(v, Path) else v for k, v in config.items()}
     config['manifest'] = str(a.manifest.resolve())
     config['device_resolved'] = str(device)
+    config['parameter_count'] = sum(p.numel() for p in model.parameters())
     if a.resume:
         # Checkpoints contain Python/NumPy RNG state: load only your trusted files.
         checkpoint = torch.load(a.resume, map_location='cpu', weights_only=False)
@@ -122,9 +123,18 @@ def main():
         return total_mse / count, total_abs / count, count
 
     for epoch in range(first, a.epochs):
+        if device.type == 'cuda':
+            torch.cuda.synchronize()
+            torch.cuda.reset_peak_memory_stats()
         started = time.perf_counter()
         train_mse, train_mae, train_n = run('train', epoch, a.max_train_batches)
+        if device.type == 'cuda':
+            torch.cuda.synchronize()
+        train_seconds = time.perf_counter() - started
+        train_peak_bytes = torch.cuda.max_memory_allocated() if device.type == 'cuda' else 0
         val_mse, val_mae, val_n = run('val', 0, a.max_val_batches)
+        if device.type == 'cuda':
+            torch.cuda.synchronize()
         elapsed = time.perf_counter() - started
         improved = val_mae < best
         best = min(best, val_mae)
@@ -139,7 +149,12 @@ def main():
             atomic_save(state, a.output / 'best.pt')
         row = dict(epoch=epoch + 1, train_mse=train_mse, train_mae_cp=train_mae,
                    val_mse=val_mse, val_mae_cp=val_mae, train_positions=train_n,
-                   val_positions=val_n, seconds=elapsed)
+                   val_positions=val_n, seconds=elapsed, train_seconds=train_seconds,
+                   train_positions_per_second=train_n / train_seconds,
+                   parameter_count=config['parameter_count'],
+                   train_peak_allocated_bytes=train_peak_bytes,
+                   peak_allocated_bytes=torch.cuda.max_memory_allocated() if device.type == 'cuda' else 0,
+                   peak_reserved_bytes=torch.cuda.max_memory_reserved() if device.type == 'cuda' else 0)
         metrics = a.output / 'metrics.csv'
         exists = metrics.exists()
         with metrics.open('a', newline='') as f:

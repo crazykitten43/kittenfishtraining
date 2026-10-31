@@ -1,0 +1,12 @@
+test_conversion_split_counts_and_tail (test_experiments.EncodingTests.test_conversion_split_counts_and_tail) ... {"train": 5, "val": 3}
+ok
+test_invalid_inputs (test_experiments.EncodingTests.test_invalid_inputs) ... ok
+test_orientation_and_score (test_experiments.EncodingTests.test_orientation_and_score) ... ok
+test_both_models_forward_backward (test_experiments.ModelTests.test_both_models_forward_backward) ... ok
+test_loader_covers_every_record (test_experiments.ModelTests.test_loader_covers_every_record) ... {"train": 11, "val": 11}
+ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 3.499s
+
+OK

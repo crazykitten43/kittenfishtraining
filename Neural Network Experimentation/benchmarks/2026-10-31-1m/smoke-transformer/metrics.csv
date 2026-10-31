@@ -1,0 +1,2 @@
+epoch,train_mse,train_mae_cp,val_mse,val_mae_cp,train_positions,val_positions,seconds,train_seconds,train_positions_per_second,parameter_count,train_peak_allocated_bytes,peak_allocated_bytes,peak_reserved_bytes
+1,1.6306593020757039,361.3572591145833,1.0545472502708435,282.4091796875,768,512,2.325020508999984,2.2485043140000016,341.56038537180206,6371585,1611904512,1611904512,1755316224
