@@ -23,7 +23,7 @@ def atomic_save(value, path):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--model', choices=['resnet', 'transformer'], required=True)
+    p.add_argument('--model', choices=['resnet', 'transformer', 'transformer_deep'], required=True)
     p.add_argument('--manifest', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--epochs', type=int, default=20)
