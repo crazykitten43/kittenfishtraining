@@ -1,12 +1,13 @@
 # Neural Network Experimentation
 
-Two PyTorch scalar evaluators, with the same inputs, White-perspective targets,
+Three PyTorch scalar evaluators, with the same inputs, White-perspective targets,
 MSE objective and shared training loop:
 
 | Model | Body | Parameters (approximately) |
 | --- | --- | ---: |
 | `resnet` | 10 SE residual blocks, 128 channels, two 3x3 convolutions/block; SE reduction 8 | 3.1M |
 | `transformer` | 64 square tokens, 8 pre-norm layers, width 256, 8 heads, FFN 1024, dropout 0.1 | 6.4M |
+| `transformer_deep` | Same design with 16 pre-norm layers (depth doubled) | approximately 12.7M |
 
 The trainer prints the exact parameter count. Both use fixed White orientation,
 12 piece indicators plus a side-to-move feature per square. ResNet uses a spatial
@@ -62,6 +63,9 @@ python train.py --model resnet --manifest /data/spatial-shards/manifest.json \
 
 python train.py --model transformer --manifest /data/spatial-shards/manifest.json \
   --output runs/transformer --epochs 20 --batch-size 256 --workers 4 --device cuda --amp bf16
+
+python train.py --model transformer_deep --manifest /data/spatial-shards/manifest.json \
+  --output runs/transformer-deep-16 --epochs 20 --batch-size 256 --workers 4 --device cuda --amp bf16
 ```
 
 Use `--device cpu --amp off --workers 0` for CPU, or `--device mps --amp off`
@@ -111,6 +115,7 @@ cd 'Neural Network Experimentation'
 python -m unittest -v test_experiments.py
 python train.py --model resnet --manifest benchmarks/2026-10-31-1m/manifest.json --output runs/replay-resnet --epochs 1 --batch-size 256 --workers 4 --device cuda --amp bf16
 python train.py --model transformer --manifest benchmarks/2026-10-31-1m/manifest.json --output runs/replay-transformer --epochs 1 --batch-size 256 --workers 4 --device cuda --amp bf16
+python train.py --model transformer_deep --manifest benchmarks/2026-10-31-1m/manifest.json --output runs/transformer-deep-16-1m --epochs 5 --batch-size 256 --workers 4 --device cuda --amp bf16
 mkdir -p runs/replay-nnue
 python train_nnue.py benchmarks/2026-10-31-1m/nnue-subset/manifest.json runs/replay-nnue/model --epochs 1 --batch-size 4096 --workers 4 --cpu-threads 4 --device cuda --checkpoint-every 10000
 ```
