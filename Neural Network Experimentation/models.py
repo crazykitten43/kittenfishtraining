@@ -38,8 +38,9 @@ class SmallResNet(nn.Module):
         return self.head(self.blocks(self.stem(x))).squeeze(-1)
 
 
-class SmallTransformer(nn.Module):
-    def __init__(self):
+class SquareTransformer(nn.Module):
+    """Transformer value evaluator; layer count is the model's depth."""
+    def __init__(self, layers):
         super().__init__()
         self.embed = nn.Linear(13, 256)
         self.position = nn.Parameter(torch.empty(1, 64, 256))
@@ -47,7 +48,7 @@ class SmallTransformer(nn.Module):
         # Construct independently: avoid identical initial weights across cloned layers.
         self.blocks = nn.ModuleList(nn.TransformerEncoderLayer(
             256, 8, 1024, dropout=0.1, activation='gelu', batch_first=True,
-            norm_first=True) for _ in range(8))
+            norm_first=True) for _ in range(layers))
         self.norm = nn.LayerNorm(256)
         self.head = nn.Sequential(nn.Linear(256, 128), nn.GELU(), nn.Linear(128, 1))
 
@@ -58,5 +59,20 @@ class SmallTransformer(nn.Module):
         return self.head(self.norm(x).mean(1)).squeeze(-1)
 
 
+class SmallTransformer(SquareTransformer):
+    def __init__(self):
+        super().__init__(layers=8)
+
+
+class DeepTransformer(SquareTransformer):
+    """16-layer, width-256 transformer; keeps the small model's other settings."""
+    def __init__(self):
+        super().__init__(layers=16)
+
+
 def make_model(name):
-    return {'resnet': SmallResNet, 'transformer': SmallTransformer}[name]()
+    return {
+        'resnet': SmallResNet,
+        'transformer': SmallTransformer,
+        'transformer_deep': DeepTransformer,
+    }[name]()
