@@ -12,7 +12,7 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 from data import Batches
-from models import make_model
+from models import MODEL_NAMES, make_model
 
 
 def atomic_save(value, path):
@@ -23,7 +23,7 @@ def atomic_save(value, path):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--model', choices=['resnet', 'transformer', 'transformer_deep'], required=True)
+    p.add_argument('--model', choices=MODEL_NAMES, required=True)
     p.add_argument('--manifest', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--epochs', type=int, default=20)

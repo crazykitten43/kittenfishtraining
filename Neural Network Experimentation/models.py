@@ -25,17 +25,31 @@ class SEBlock(nn.Module):
 
 
 class SmallResNet(nn.Module):
-    def __init__(self):
+    def __init__(self, blocks=10, attention_layers=0):
         super().__init__()
         self.stem = nn.Sequential(nn.Conv2d(13, 128, 3, padding=1, bias=False),
                                   nn.BatchNorm2d(128), nn.ReLU())
-        self.blocks = nn.Sequential(*(SEBlock() for _ in range(10)))
+        self.blocks = nn.Sequential(*(SEBlock() for _ in range(blocks)))
+        self.attention = nn.ModuleList(nn.TransformerEncoderLayer(
+            128, 4, 256, dropout=0.0, activation='gelu', batch_first=True,
+            norm_first=True) for _ in range(attention_layers))
+        if attention_layers:
+            self.position = nn.Parameter(torch.empty(1, 64, 128))
+            nn.init.normal_(self.position, std=0.02)
         self.head = nn.Sequential(nn.Conv2d(128, 8, 1), nn.ReLU(), nn.Flatten(),
                                   nn.Linear(512, 128), nn.ReLU(), nn.Linear(128, 1))
 
     def forward(self, pieces, stm):
         x = planes(pieces, stm).transpose(1, 2).reshape(-1, 13, 8, 8)
-        return self.head(self.blocks(self.stem(x))).squeeze(-1)
+        x = self.blocks(self.stem(x))
+        if self.attention:
+            # Keep one token per square and feed the same spatial value head.
+            tokens = x.flatten(2).transpose(1, 2)
+            tokens = tokens + self.position.to(tokens.dtype)
+            for block in self.attention:
+                tokens = block(tokens)
+            x = tokens.transpose(1, 2).reshape_as(x)
+        return self.head(x).squeeze(-1)
 
 
 class SquareTransformer(nn.Module):
@@ -70,9 +84,19 @@ class DeepTransformer(SquareTransformer):
         super().__init__(layers=16)
 
 
+RESNET_SWEEP = {
+    'resnet_6': (6, 0),
+    'resnet': (10, 0),
+    'resnet_16': (16, 0),
+    'resnet_24': (24, 0),
+    'hybrid_10_1': (10, 1),
+    'hybrid_10_3': (10, 3),
+}
+TRANSFORMERS = {'transformer': SmallTransformer, 'transformer_deep': DeepTransformer}
+MODEL_NAMES = (*RESNET_SWEEP, *TRANSFORMERS)
+
+
 def make_model(name):
-    return {
-        'resnet': SmallResNet,
-        'transformer': SmallTransformer,
-        'transformer_deep': DeepTransformer,
-    }[name]()
+    if name in RESNET_SWEEP:
+        return SmallResNet(*RESNET_SWEEP[name])
+    return TRANSFORMERS[name]()

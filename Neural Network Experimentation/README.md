@@ -119,3 +119,34 @@ python train.py --model transformer_deep --manifest benchmarks/2026-10-31-1m/man
 mkdir -p runs/replay-nnue
 python train_nnue.py benchmarks/2026-10-31-1m/nnue-subset/manifest.json runs/replay-nnue/model --epochs 1 --batch-size 4096 --workers 4 --cpu-threads 4 --device cuda --checkpoint-every 10000
 ```
+
+## SE-ResNet depth and attention sweep
+
+The sweep compares 6, 10, 16 and 24 SE blocks at a fixed width of 128
+channels. Both hybrids start with the unchanged 10-block convolutional
+trunk and add either one or three transformer encoder layers over the
+64 squares. The attention layers use four heads, a 256-wide feed-forward
+layer and learned square positions. All six variants use the same
+spatial value head.
+
+From a clean checkout on a machine authenticated to Google Cloud:
+
+```bash
+bash 'Neural Network Experimentation/run_resnet_sweep_gcloud.sh'
+```
+
+The launcher checks the machine type, restarts the existing
+`kittenfishgpu` instance, and fetches the checked-out commit and the original
+benchmark shards. It runs the models sequentially for five complete epochs
+with the shared BF16 training recipe. The sweep has a three-hour time limit
+on the VM. The launcher copies the CSV and JSON reports back to the current
+directory and stops the VM on exit. Checkpoints remain on its persistent disk
+under `~/kittenfish-benchmarks/<run-id>/results`.
+
+`training_summary.csv` gives best and final validation MAE, training
+throughput and peak memory. `inference.csv` gives p50 and p95 latency,
+throughput and peak memory for the best checkpoint of each model at
+batches 1, 16, 64, 256 and 1024, in FP32 and BF16. Inference inputs are
+already on the GPU. Throughput uses queued forwards, and latency synchronizes
+after each forward. Use batch 1 for single-position timing and larger
+batches for batched evaluation.
